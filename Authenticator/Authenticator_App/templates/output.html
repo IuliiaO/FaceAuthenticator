@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %} 
+<h2> Image detection </h2> 
+{% endblock title %}
+
+{% block content %} 
+<center>
+    {% if posts['accuracy']|int > 90 %}
+        <p>The person in the image is {{posts['name']}} with probability {{posts['accuracy'][:5] + '%'}}. <br>
+        The role assigned to {{posts['name']}} is {{posts['role']}}
+        </p>
+    {% else %}
+        <p> Unknown person <br>
+            (Max accuracy: {{posts['accuracy'][:5] + '%'}})
+        </p>
+    {% endif %}
+<img src="{{posts["cropface"]}}" alt="Image uploaded" ; width="300"/>	
+</center>
+{% endblock content %}

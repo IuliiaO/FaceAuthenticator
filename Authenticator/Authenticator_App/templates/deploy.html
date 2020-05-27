@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+<h2>
+    <strong> Step 3/3 completed </strong>
+</h2>
+{% endblock title %}
+
+{% block content %} 
+<p STYLE="text-align: center; font-size:1.5em"> Training is completed! </p>
+<p STYLE="text-align: center;"> Your model is activated and ready for a recognition test </p>
+
+<center>
+<img src="https://raw.githubusercontent.com/joaquinmenendez/Authenticator/master/videos_photos/faces_scaled.png?token=AEN4ZVQFPHRESB34CSWWXGC6W5LKG" text-align: center; height="100%"/>
+</center>
+
+<br>
+</br>
+
+<div>
+    <form style="text-align: center">
+        <button formaction="/test">
+            <p style="text-align: center; vertical-align: middle; margin: auto;">
+    
+                <strong>Test your model</strong>
+            </p>
+        </button>
+    </form>
+<div>
+
+
+ {% endblock content %} 
+
+

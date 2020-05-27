@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+<h2><strong>Upload your videos</a></strong></h2> 
+ {% endblock title %}
+
+{% block content %} 
+    <h5 style = "margin-bottom: 1em; margin-top: 1em"><strong>Instructions</strong></h5>
+    <p>
+    Upload a video (30 seconds long) for every person that you want to include in your model. <br>
+    For each video you should assign a name and a role. <br>
+    Depending on how the video was filmed you may need to rotate it. <br>
+    After uploading all your videos click on 'Preprocess data'. <br>
+    If you uploaded a wrong video you could delete all by clicking on the 'Reset' option in the navigation bar.<br>
+   </p>
+   <br>
+   <center>
+    <form method="post" action="/train" enctype="multipart/form-data">
+        <dl>
+            <input type="file" name="file" autocomplete="off" required>
+            </center>
+                    <div class="container">      
+                        <div class="row justify-content-center">
+                            <div class="col-4">
+                                <center>
+                                <label for="fname">Who appears in this video?</label><br>
+                                <input type="text" id="fname" name="fname"><br>
+                                <label for="frole">Assign a role</label><br>
+                                <input type="text" id="frole" name="frole"><br>
+                                </center>
+                            </div>
+                            <div class="col-4">
+                                <p> Rotation options </p>
+                                <input type="checkbox" id="frotate" name="frotate" value="ROTATE_90_CLOCKWISE">
+                                <label for="frotate">Rotate image 90° clockwise</label><br>
+                                <input type="checkbox" id="frotate" name="frotate" value="ROTATE_90_COUNTERCLOCKWISE">
+                                <label for="frotate">Rotate image 90° counter clockwise</label><br>
+                                <input type="checkbox" id="frotate" name="frotate" value="ROTATE_180">
+                                <label for="frotate">Rotate image 180°</label><br>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <label for="fframes"> Image per N frame (1 to 24) &nbsp; </label>
+                            <input type="number" id="fframes" name="fframes" min="1" max="24">
+                        </div>
+                    </div>
+            <center>
+                <br>
+            <input type="submit" value="Upload"> <input type="reset"  value="Clean fields"> <br>
+        <p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+            <br>
+        </p>  
+        <dl>
+        <br>
+        {% if posts[0] %}
+            <table>
+                    <tr>
+                        {% for key in posts[0].keys()%}
+                        <th> {{ key}} </th>
+                        {% endfor %}
+                    </tr>
+                    {% for dictionary in posts %}
+                    <tr>
+                            {% for keys, value in dictionary.items() %}
+                            <td> {{ value }} </td>
+                            {% endfor %} 
+                    </tr>
+                     {% endfor %}    
+            </table>
+        {% else %}
+        <br>
+            <p>Please upload one file<p/>
+        {% endif %}
+ 
+    </form>
+    {% if posts%}
+    <br>
+        <form method="post" action="/preprocess/">
+            <button name="preprocess_button" type="submit">Preprocess data </button>
+        </form>
+    <br>
+    {% endif %}
+        {% if finish_preprocess == True %}
+        <form style="text-align: center">
+            <button formaction="/preprocess">
+                <p style="text-align: center; vertical-align: middle; margin: auto;; font-size:20px "><strong> Next </strong></p>
+            </button>
+        </form>
+        {% endif %}
+</center>
+{% endblock content %}

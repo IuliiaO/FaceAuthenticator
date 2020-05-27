@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+<h2>
+    <strong>Welcome to Authentificator!</a></strong>
+</h2>
+{% endblock title %}
+
+{% block content %} 
+<br>
+    <p> Authentificator is a framework to train and deploy face recognition algorithms in an easy and fast way.</p>
+    <p> You can use Authentificator to identify your team members and share the appropriate access rights to keep your business safe.</p>
+    </br>
+    <div>
+        <p style="display:inline-block;text-aling:center"><strong>Teach the algortihm to recognize your team!  </strong></p>
+        <form style="display: inline">
+            <button formaction="/train" style="display:inline-block;p margin-left:20px">
+                <p style="text-align: center; vertical-align: middle; margin: auto; font-size:20px ">
+                     Start 
+                </p>
+            </button>
+        </form>
+    </div>
+	<div class="video-wrapper" style="padding-bottom:50%; margin-top:2em; position:relative; display:block; width: 100%;text-align: center;"> 
+        <iframe name="frame-video-proj" id="frame-video-proj" width="70%" height="70%" frameborder = "0" text-align = "center"
+        src="https://www.youtube.com/embed/r5x1te9vxK4" style="position:absolute; top:0; text-align: center;display:block; allowfullscreen"></iframe>
+    </div>
+
+    <br>
+{% endblock content %}
+<p style="display:inline-block;">Follow us on Facebook:</p><div style="display:inline-block;" id="follow-button">btn</div>

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+<h2>
+    <strong>Test your model</a></strong>
+</h2>
+{% endblock title %}
+
+{% block content %} 
+<div id = "test-content">
+    <p>Upload a picture that you want to test</p>
+    <center>
+    <form method="post" action="/test" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" autocomplete="off" required>
+                <input type="submit" value="Upload">
+                <p>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flashes>
+                        {% for message in messages %}
+                        <p  style="text-align: center; font-size:35px ; color: #16167f;"><li>{{ message }}</li></p>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% endwith %}
+                </p>
+            </p>
+        </dl>
+
+    </form>
+        {% if posts["file"] %}
+        <br>
+        <img src="{{posts["path"]}}" alt="Image selected" ; width="400"; style="margin-bottom: 2em"/>
+        <form>
+        <button formaction="/output">Test this photo!</button>
+        </form>
+        </center>
+</div>
+        {% endif %}
+{% endblock content %}
